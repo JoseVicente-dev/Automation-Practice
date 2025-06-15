@@ -1,0 +1,41 @@
+name: Run Serenity BDD Tests CI with Gradle
+
+on:
+  push:
+    branches: [ "automation/webUI_Screenplay_serenityBDD_gradle" ]
+  pull_request:
+    branches: [ "automation/webUI_Screenplay_serenityBDD_gradle" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'gradle' # Configures the cache for Gradle dependencies
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Run tests and generate report with Gradle
+        run: ./gradlew clean test aggregate
+
+      - name: Upload Serenity Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: serenity-report
+          path: target/site/serenity/ #The report's path remains the same
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/automation/webUI_Screenplay_serenityBDD_gradle' # Only deploys on pushes to the specified branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/serenity
