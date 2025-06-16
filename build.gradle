@@ -67,3 +67,7 @@ java {
 gradle.startParameter.continueOnFailure = true
 
 test.finalizedBy(aggregate)
+
+wrapper {
+    gradleVersion = '8.13'
+}
