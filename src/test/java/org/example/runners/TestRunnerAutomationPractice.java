@@ -7,15 +7,10 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        features = {
-                "src/test/resources/features/login.feature"},
-        glue ={
-                "org.example.stepdefinitions"
-                },
+        features = {"src/test/resources/features/login.feature"},
+        glue ={"org.example.stepdefinitions"},
         tags = "",
         plugin = {"pretty"}
-
 )
-
 public class TestRunnerAutomationPractice {
 }

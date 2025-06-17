@@ -16,6 +16,6 @@ public class Hooks {
     @Before
     public void setTheStage() {
         OnStage.setTheStage(new OnlineCast());
-        theActorCalled(ACTOR_NAME);
+        OnStage.theActorCalled(ACTOR_NAME);
     }
 }
