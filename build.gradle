@@ -29,10 +29,12 @@ ext {
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
+//Chose the dependencies based on your project needs
 dependencies {
     implementation "net.serenity-bdd:serenity-core:${serenityVersion}"
     implementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
     implementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
     implementation "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
     implementation "net.serenity-bdd:serenity-rest-assured:${serenityVersion}"
     implementation "net.serenity-bdd:serenity-assertions:${serenityVersion}"
@@ -58,10 +60,15 @@ test {
     systemProperties System.getProperties()
     systemProperty "cucumber.options", System.getProperty("cucumber.options")
 }
+//Defines where are the feature files
+serenity {
+    testRoot = "features"
+    requirementsDir = "src/test/resources/features"
+}
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 gradle.startParameter.continueOnFailure = true
