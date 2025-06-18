@@ -2,9 +2,9 @@ name: Run Serenity BDD Tests CI with Gradle
 
 on:
   push:
-    branches: [ "automation/webUI_Screenplay_serenityBDD_gradle" ]
+    branches: [ "automation/API_screenplay_serenityBDD_gradle" ]
   pull_request:
-    branches: [ "automation/webUI_Screenplay_serenityBDD_gradle" ]
+    branches: [ "automation/API_screenplay_serenityBDD_gradle" ]
   workflow_dispatch:
 
 jobs:
